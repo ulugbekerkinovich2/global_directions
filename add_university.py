@@ -6,7 +6,7 @@ import time
 from tqdm import tqdm
 import random
 import string
-token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3RfbmFtZSI6IlNoYWtoem9kIiwibGFzdF9uYW1lIjoiWW92a29jaGV2IiwicGhvbmUiOiIrOTk4OTc3MzQ4NDAxIiwiZW1haWwiOiJzeW92a29jaGV2QGdtYWlsLmNvbSIsImF2YXRhciI6bnVsbCwicm9sZSI6InN1cGVyX2FkbWluIiwiaXNfdmVyaWZ5Ijp0cnVlLCJzdGF0dXMiOiJzZW50X3NtcyIsImNyZWF0ZWRfYXQiOiIyMDI0LTA0LTE2VDAzOjA0OjE3LjY5NloiLCJ1cGRhdGVkX2F0IjoiMjAyNC0wNC0xNlQwMzowNDoxNy42OTZaIiwidW5pdmVyc2l0eSI6bnVsbCwidW5pdmVyc2l0eV9pZCI6bnVsbCwiaWF0IjoxNzE1MjM0NTUyLCJleHAiOjE3MTUyNzc3NTJ9.kSlVA51hoSq5a8XoUJgCmyabQZ4pOnkVPsHSza42jiQ"
+token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3RfbmFtZSI6IlNoYWtoem9kIiwibGFzdF9uYW1lIjoiWW92a29jaGV2IiwicGhvbmUiOiIrOTk4OTc3MzQ4NDAxIiwiZW1haWwiOiJzeW92a29jaGV2QGdtYWlsLmNvbSIsImF2YXRhciI6bnVsbCwicm9sZSI6InN1cGVyX2FkbWluIiwiaXNfdmVyaWZ5Ijp0cnVlLCJzdGF0dXMiOiJzZW50X3NtcyIsImNyZWF0ZWRfYXQiOiIyMDI0LTA0LTE2VDAzOjA0OjE3LjY5NloiLCJ1cGRhdGVkX2F0IjoiMjAyNC0wNC0xNlQwMzowNDoxNy42OTZaIiwidW5pdmVyc2l0eSI6bnVsbCwidW5pdmVyc2l0eV9pZCI6bnVsbCwiaWF0IjoxNzE1NjYyMTU2LCJleHAiOjE3MTU3MDUzNTZ9.UmHiM16ofCDV3U6UqT7cJkyIIciM49sYR8EeBemoPc8"
 
 
 origin = 'https://admin.iapply.org'
@@ -234,69 +234,74 @@ with open('../GSP_NEW_universities_UPDATED.json', 'r', encoding='utf8') as f:
         ic(full_name_ru)
         abbr = generate_random_string(8)
         ic(abbr)
-        # res_add_uni, status = add_university(
-        #     token,
-        #     full_name_uz=full_name_uz,
-        #     full_name_ru=full_name_uz,
-        #     full_name_en=full_name_uz,
-        #     domain=domain,
-        #     email=email,
-        #     abbr_name_en=abbr,
-        #     abbr_name_ru=abbr,
-        #     abbr_name_uz=abbr,
-        #     lead_limit=lead_limit,
-        #     path_logo=logo,
-        #     location_id=location_id,
-        #     login=f'info@{abbr}.com',
-        #     password=password,
-        #     representative_full_name=representative_full_name
-        # )
+        res_add_uni, status = add_university(
+            token,
+            full_name_uz=full_name_uz,
+            full_name_ru=full_name_uz,
+            full_name_en=full_name_uz,
+            domain=domain,
+            email=email,
+            abbr_name_en=abbr,
+            abbr_name_ru=abbr,
+            abbr_name_uz=abbr,
+            lead_limit=lead_limit,
+            path_logo=logo,
+            location_id=location_id,
+            login=f'info@{abbr}.com',
+            password=password,
+            representative_full_name=representative_full_name
+        )
         
         
         # status1 = False
         # status2 = False
         # status3 = False
-
-        # if status == 201:
-        #     status1 = True
-        #     # response_data = res_add_uni.json()  # Correctly parsing the JSON only once
-        #     ic(res_add_uni)                   # Inspect the parsed JSON data
-        #     uni_id = res_add_uni['id']   
-        #     ic(uni_id)     # Accessing the 'id' from the parsed JSON
-        #     obj = {
-        #         'uni_id': uni_id,
-        #         "uni_nme": full_name_uz
-        #     }
-        #     ic(obj)
-        #     array_obj.append(obj)
-        #     with open('inserted_uni.json', 'w', encoding='utf-8') as f:
-        #         json.dump(array_obj, f, ensure_ascii=False)
-        # else:
-        #     # response_data, status = res_add_uni
-        #     status1 = False
-        #     obj = {
-        #         "uni_name": full_name_uz,
-        #         "error_mess": res_add_uni['message']
-        #     }
-        #     ic(obj)
-        #     array_obj.append(obj)
-        #     with open('inserted_uni.json', 'w', encoding='utf-8') as f:
-        #         json.dump(array_obj, f, ensure_ascii=False)
-        # if status1:
-        #     time.sleep(1)
-        #     # res_add_uni = res_add_uni.
-        #     uni_id = res_add_uni['id']
+        uni_ids=[]
+        if status == 201:
+            status1 = True
+            # response_data = res_add_uni.json()  # Correctly parsing the JSON only once
+            ic(res_add_uni)                   # Inspect the parsed JSON data
+            uni_id = res_add_uni['id']   
+            ic(uni_id)     # Accessing the 'id' from the parsed JSON
+            obj = {
+                'uni_id': uni_id,
+                "uni_nme": full_name_uz
+            }
+            uni_ids.append(uni_id)
+            ic(uni_ids)
+            ic(obj)
+            array_obj.append(obj)
+            with open('inserted_uni1.json', 'w', encoding='utf-8') as f:
+                json.dump(array_obj, f, ensure_ascii=False)
+        else:
+            # response_data, status = res_add_uni
+            status1 = False
+            obj = {
+                "uni_name": full_name_uz,
+                "error_mess": res_add_uni['message']
+            }
+            ic(obj)
+            array_obj.append(obj)
+            with open('inserted_uni2.json', 'w', encoding='utf-8') as f:
+                json.dump(array_obj, f, ensure_ascii=False)
+        if status1:
+            time.sleep(1)
+            # res_add_uni = res_add_uni.
+            uni_id = res_add_uni['id']
 
                     
-        uni_ids = return_uni_id(full_name_uz)
-        ic(uni_ids, type(uni_ids)) 
-        if uni_ids is None:
-            count_none += 1
+        # uni_ids = return_uni_id(full_name_uz)
+        # ic(uni_ids, type(uni_ids)) 
+        # if uni_ids is None:
+        #     count_none += 1
+        #     continue
+        # ic(uni_ids, type(uni_ids))
+        if uni_ids == []:
             continue
-        ic(uni_ids, type(uni_ids))
+        ic(uni_ids)
         update_uni = update_data_university(
             
-            uni_id=int(uni_ids),
+            uni_id=int(uni_ids[0]),
             address_en=address_en,
             address_ru=address_ru,
             address_uz=address_uz,
@@ -325,7 +330,7 @@ with open('../GSP_NEW_universities_UPDATED.json', 'r', encoding='utf8') as f:
         # if status2:
         time.sleep(1)
         update_meta_ = update_meta(
-            uni_id=int(return_uni_id(full_name_uz)),
+            uni_id=uni_ids[0],
             mtdt_description_en=mtdt_description_en,
             mtdt_description_ru=mtdt_description_ru,
             mtdt_description_uz=mtdt_description_uz,
@@ -344,4 +349,4 @@ with open('../GSP_NEW_universities_UPDATED.json', 'r', encoding='utf8') as f:
         #     else:
         #         status3 = False
         # time.sleep(1)
-ic(count_none)
+# ic(count_none)

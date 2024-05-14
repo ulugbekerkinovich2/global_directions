@@ -46,11 +46,11 @@ def add_direction(application_fee,category_id,contract_type_ids,degree_ids,descr
     response = requests.post(url, headers=headers, json=body)
     time.sleep(0.5)
     return response
-res_direction = add_direction(1200,1,[2],[1],'desc_en','desc_ru','desc_uz',[{'education_type_id':1,'education_language_id':2}],[{'education_type_id':1,'local_tuition_fee':1200,'international_tuition_fee':None}],'2024-11-01',
-                              "Matematika",True,False,"6090930",False,"Dasturlash en1",'Dasturlash ru1','Dasturlash uz1','req_en_','req_ru_',
-                               'req_uz','','2023-11-01',"active",443)
-res = res_direction.json()
-ic(res)
+# res_direction = add_direction(1200,1,[2],[1],'desc_en','desc_ru','desc_uz',[{'education_type_id':1,'education_language_id':2}],[{'education_type_id':1,'local_tuition_fee':1200,'international_tuition_fee':None}],'2024-11-01',
+#                               "Matematika",True,False,"6090930",False,"Dasturlash en1",'Dasturlash ru1','Dasturlash uz1','req_en_','req_ru_',
+#                                'req_uz','','2023-11-01',"active",443)
+# res = res_direction.json()
+# ic(res)
 
 def update_direction(dir_id,application_fee,category_id,contract_type_ids,degree_ids,description_en,description_ru,description_uz,education_type_languages,
                   education_type_tuition_fees,end_date,first_subject,has_mandatory_subjects,has_stipend,id_number,is_open_for_admission,
@@ -90,7 +90,7 @@ def update_direction(dir_id,application_fee,category_id,contract_type_ids,degree
     }
     response = requests.patch(url, headers=headers, json=body)
 
-    return response
+    return response, body
 
 
 
